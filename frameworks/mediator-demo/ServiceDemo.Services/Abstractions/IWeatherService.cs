@@ -8,5 +8,5 @@ public interface IWeatherService
     Task<Dictionary<string, List<WeatherForecast>>> GetWeatherForecastForZipCodes(IEnumerable<string> zipCode, int numDays, bool includeSummary = false);
     
     Task<List<string>> GetSupportedZipCodes();
-    Task<List<string>> SendExtremeWeatherAlert(IEnumerable<string> zipCodes, string alertMessage);
+    Task<AlertRecipients> SendExtremeWeatherAlert(IEnumerable<string> zipCodes, string alertMessage);
 }

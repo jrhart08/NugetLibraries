@@ -56,7 +56,7 @@ public class WeatherService : IWeatherService
             .ToList();
     }
 
-    public async Task<List<string>> SendExtremeWeatherAlert(IEnumerable<string> zipCodes, string alertMessage)
+    public async Task<AlertRecipients> SendExtremeWeatherAlert(IEnumerable<string> zipCodes, string alertMessage)
     {
         List<string> phoneNumbersToAlert = _context
             .SupportedAreas
@@ -67,7 +67,7 @@ public class WeatherService : IWeatherService
 
         await _twilio.SendAlert(phoneNumbersToAlert, alertMessage);
 
-        return phoneNumbersToAlert;
+        return new(phoneNumbersToAlert);
     }
 
     #region private methods

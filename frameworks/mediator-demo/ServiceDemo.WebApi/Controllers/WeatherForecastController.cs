@@ -42,7 +42,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPost("alert")]
-    public async Task<List<string>> SendExtremeWeatherAlert(
+    public async Task<AlertRecipients> SendExtremeWeatherAlert(
         [FromBody] SendExtremeWeatherAlertsRequest request)
     {
         return await _weatherService.SendExtremeWeatherAlert(request.ZipCodes, request.AlertMessage);
