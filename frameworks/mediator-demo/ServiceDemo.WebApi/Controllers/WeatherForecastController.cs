@@ -22,13 +22,15 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("")]
-    public async Task<IEnumerable<WeatherForecast>> Get([FromQuery] GetWeatherForecastRequest request)
+    public async Task<IEnumerable<WeatherForecast>> Get(
+        [FromQuery] GetWeatherForecastRequest request)
     {
         return await _weatherService.GetWeatherForecast(request.ZipCode, request.Days, request.IncludeSummaries);
     }
 
     [HttpGet("byzipcode")]
-    public async Task<Dictionary<string, List<WeatherForecast>>> GetByZipCode([FromQuery] GetWeatherForecastByZipCodeRequest request)
+    public async Task<Dictionary<string, List<WeatherForecast>>> GetByZipCode(
+        [FromQuery] GetWeatherForecastByZipCodeRequest request)
     {
         return await _weatherService.GetWeatherForecastForZipCodes(request.ZipCodes, request.Days, request.IncludeSummaries);
     }
@@ -40,7 +42,8 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPost("alert")]
-    public async Task<List<string>> SendExtremeWeatherAlert([FromBody] SendExtremeWeatherAlertsRequest request)
+    public async Task<List<string>> SendExtremeWeatherAlert(
+        [FromBody] SendExtremeWeatherAlertsRequest request)
     {
         return await _weatherService.SendExtremeWeatherAlert(request.ZipCodes, request.AlertMessage);
     } 

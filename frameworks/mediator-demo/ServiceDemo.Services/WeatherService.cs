@@ -44,21 +44,24 @@ public class WeatherService : IWeatherService
 
     public async Task<List<string>> GetSupportedZipCodes()
     {
-        return await _context.GetSupportedZipCodes();
+        return _context
+            .SupportedAreas
+            .Select(area => area.ZipCode)
+            .ToList();
     }
 
     public async Task<List<string>> SendExtremeWeatherAlert(IEnumerable<string> zipCodes, string alertMessage)
     {
-        var notifiedSubscribers = new List<string>();
-        
-        foreach (string zip in zipCodes)
-        {
-            List<string> subscribers = await _context.GetSubscribersByZipCode(zip);
+        List<string> phoneNumbersToAlert = _context
+            .SupportedAreas
+            .Where(area => zipCodes.Contains(area.ZipCode))
+            .SelectMany(area => area.Subscribers)
+            .Select(sub => sub.PhoneNumber)
+            .ToList();
 
-            await _twilio.SendAlert(subscribers, alertMessage);
-        }
+        await _twilio.SendAlert(phoneNumbersToAlert, alertMessage);
 
-        return notifiedSubscribers;
+        return phoneNumbersToAlert;
     }
 
     #region private methods
