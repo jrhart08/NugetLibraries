@@ -8,9 +8,18 @@ internal class WeatherForecastQuery
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-    
+
+    readonly HttpClient _client;
+
+    public WeatherForecastQuery(IHttpClientFactory clientFactory)
+    {
+        _client = clientFactory.CreateClient("weather-client");
+    }
+
     public async Task<List<WeatherForecast>> Get(string zipCode, int numDays, bool includeSummary)
     {
+        // pretend we're using _client here
+
         await Task.Delay(100);
 
         return Enumerable

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatrDemo.WeatherDomain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatrDemo.WebApi", "MediatrDemo.WebApi\MediatrDemo.WebApi.csproj", "{CB0661FC-6F99-4799-9C85-81BAEC3D5A02}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "service-example", "service-example", "{F8F6A29A-3267-4B08-97F6-BE94B0736E6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mediatr-example", "mediatr-example", "{ACBC7EC3-DA56-4175-911C-34FC0536EB39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,11 @@ Global
 		{CB0661FC-6F99-4799-9C85-81BAEC3D5A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB0661FC-6F99-4799-9C85-81BAEC3D5A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB0661FC-6F99-4799-9C85-81BAEC3D5A02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69EE18A4-2C17-4F0F-A072-D8741535A756} = {F8F6A29A-3267-4B08-97F6-BE94B0736E6C}
+		{5BE726CB-F392-4C07-9DBF-79FD3EDD693F} = {F8F6A29A-3267-4B08-97F6-BE94B0736E6C}
+		{B0B04581-B1D5-4270-873B-152CE8C4119B} = {ACBC7EC3-DA56-4175-911C-34FC0536EB39}
+		{CB0661FC-6F99-4799-9C85-81BAEC3D5A02} = {ACBC7EC3-DA56-4175-911C-34FC0536EB39}
 	EndGlobalSection
 EndGlobal

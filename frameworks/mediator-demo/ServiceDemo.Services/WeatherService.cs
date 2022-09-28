@@ -15,12 +15,18 @@ public class WeatherService : IWeatherService
     readonly ILogger<WeatherService> _logger;
     readonly MyDbContext _context;
     readonly ITwilioWrapper _twilio;
+    readonly IHttpClientFactory _httpClientFactory;
 
-    public WeatherService(ILogger<WeatherService> logger, MyDbContext context, ITwilioWrapper twilio)
+    public WeatherService(
+        ILogger<WeatherService> logger,
+        MyDbContext context,
+        ITwilioWrapper twilio,
+        IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
         _context = context;
         _twilio = twilio;
+        _httpClientFactory = httpClientFactory;
     }
 
     public async Task<List<WeatherForecast>> GetWeatherForecast(string zipCode, int numDays, bool includeSummary = false)
@@ -67,6 +73,8 @@ public class WeatherService : IWeatherService
     #region private methods
     async Task<List<WeatherForecast>> GetForecastForZipCode(string zipCode, int numDays, bool includeSummary)
     {
+        // pretend we're using _httpClientFactory here
+        
         _logger.LogDebug($"Fetching weather for zip code: {zipCode}");
 
         await Task.Delay(100);
