@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.WebApi", "Mis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.Flurl", "MiscLibraries.Flurl\MiscLibraries.Flurl.csproj", "{36DC0190-3474-4CA8-B7F8-D1997BF4EF85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.Polly", "MiscLibraries.Polly\MiscLibraries.Polly.csproj", "{11F92B28-8A07-4A04-8BB8-071FA4C13D77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{36DC0190-3474-4CA8-B7F8-D1997BF4EF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DC0190-3474-4CA8-B7F8-D1997BF4EF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DC0190-3474-4CA8-B7F8-D1997BF4EF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
