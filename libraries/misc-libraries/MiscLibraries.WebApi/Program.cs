@@ -1,10 +1,11 @@
 using MiscLibraries.Flurl;
+using MiscLibraries.Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+// builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,8 +17,22 @@ builder.Services.AddTransient<FlurlExamples>(provider =>
 
     return new(config["OpenWeatherApiKey"]!, httpClientFactory);
 });
+builder.Services.AddTransient<RetryExamples>();
+builder.Services.AddSingleton<CircuitBreakerExamples>();
 
 var app = builder.Build();
+
+app.MapGet(
+    "api/weather/realweather",
+    (FlurlExamples fe, double lat, double lon) => fe.GetWeatherObject(lat, lon));
+
+app.MapGet(
+    "api/weather/stubborn",
+    (RetryExamples re, double? lat, double? lon) => re.StubbornlyGetWeather(lat, lon));
+
+app.MapGet(
+    "api/weather/cautious",
+    (CircuitBreakerExamples ce, double? lat, double? lon) => ce.CautiouslyGetWeather(lat, lon));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,8 +43,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+// app.UseAuthorization();
+//
+// app.MapControllers();
 
 app.Run();

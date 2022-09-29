@@ -11,7 +11,7 @@ public class OpenWeatherApiResponse
     public record WeatherResponse(int Id, string Main, string Description, string Icon);
 
     public CoordResponse Coord { get; set; }
-    public WeatherResponse Weather { get; set; }
+    public WeatherResponse[] Weather { get; set; }
 }
 
 public class FlurlExamples
@@ -25,7 +25,7 @@ public class FlurlExamples
         _httpClient = httpClientFactory.CreateClient();
     }
 
-    public async Task<string> GetWeatherData(double lat, double lon)
+    public async Task<string> GetWeatherData(double? lat, double? lon)
     {
         return await "https://api.openweathermap.org/data/2.5/weather"
             // extension methods provided in Flurl package
@@ -36,7 +36,7 @@ public class FlurlExamples
             .GetStringAsync();
     }
 
-    public async Task<OpenWeatherApiResponse> GetWeatherObject(double lat, double lon)
+    public async Task<OpenWeatherApiResponse> GetWeatherObject(double? lat, double? lon)
     {
         return await "https://api.openweathermap.org/data/2.5/weather"
             // extension methods provided in Flurl package
@@ -47,7 +47,7 @@ public class FlurlExamples
             .GetJsonAsync<OpenWeatherApiResponse>();
     }
 
-    public async Task<string> GetWeatherData_HttpClient(double lat, double lon)
+    public async Task<string> GetWeatherData_HttpClient(double? lat, double? lon)
     {
         string url = $"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={_openWeatherApiKey}";
 
@@ -56,7 +56,7 @@ public class FlurlExamples
         return await response.Content.ReadAsStringAsync();
     }
 
-    public async Task<OpenWeatherApiResponse> GetWeatherObject_HttpClient(double lat, double lon)
+    public async Task<OpenWeatherApiResponse> GetWeatherObject_HttpClient(double? lat, double? lon)
     {
         string url = $"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={_openWeatherApiKey}";
 

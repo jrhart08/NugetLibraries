@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.Flurl", "Misc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.Polly", "MiscLibraries.Polly\MiscLibraries.Polly.csproj", "{11F92B28-8A07-4A04-8BB8-071FA4C13D77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscLibraries.LazyCache", "MiscLibraries.LazyCache\MiscLibraries.LazyCache.csproj", "{AE31BA77-7B04-4177-AD7A-AEEF2062C3C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11F92B28-8A07-4A04-8BB8-071FA4C13D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE31BA77-7B04-4177-AD7A-AEEF2062C3C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE31BA77-7B04-4177-AD7A-AEEF2062C3C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE31BA77-7B04-4177-AD7A-AEEF2062C3C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE31BA77-7B04-4177-AD7A-AEEF2062C3C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
