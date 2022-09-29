@@ -13,6 +13,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MiscLibraries.Flurl\MiscLibraries.Flurl.csproj" />
+      <ProjectReference Include="..\MiscLibraries.Hashids\MiscLibraries.Hashids.csproj" />
+      <ProjectReference Include="..\MiscLibraries.LazyCache\MiscLibraries.LazyCache.csproj" />
       <ProjectReference Include="..\MiscLibraries.Polly\MiscLibraries.Polly.csproj" />
     </ItemGroup>
 

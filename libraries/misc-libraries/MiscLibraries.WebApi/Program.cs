@@ -1,4 +1,5 @@
 using MiscLibraries.Flurl;
+using MiscLibraries.Hashids;
 using MiscLibraries.Polly;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddTransient<FlurlExamples>(provider =>
 });
 builder.Services.AddTransient<RetryExamples>();
 builder.Services.AddSingleton<CircuitBreakerExamples>();
+builder.Services.AddSingleton<HashService>();
 
 var app = builder.Build();
 
@@ -33,6 +35,14 @@ app.MapGet(
 app.MapGet(
     "api/weather/cautious",
     (CircuitBreakerExamples ce, double? lat, double? lon) => ce.CautiouslyGetWeather(lat, lon));
+
+app.MapGet(
+    "api/hashids/encode",
+    (HashService hs, Guid id) => hs.Encode(id));
+
+app.MapGet(
+    "api/hashids/decode",
+    (HashService hs, string hash) => hs.Decode(hash));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
