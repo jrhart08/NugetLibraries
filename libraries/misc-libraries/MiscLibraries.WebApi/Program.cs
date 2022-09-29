@@ -1,6 +1,7 @@
 using MiscLibraries.Flurl;
 using MiscLibraries.Hashids;
 using MiscLibraries.Polly;
+using MiscLibraries.LazyCacheEx;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddTransient<FlurlExamples>(provider =>
 builder.Services.AddTransient<RetryExamples>();
 builder.Services.AddSingleton<CircuitBreakerExamples>();
 builder.Services.AddSingleton<HashService>();
+builder.Services.AddTransient<LazyCacheExamples>();
 
 var app = builder.Build();
 
@@ -35,6 +37,10 @@ app.MapGet(
 app.MapGet(
     "api/weather/cautious",
     (CircuitBreakerExamples ce, double? lat, double? lon) => ce.CautiouslyGetWeather(lat, lon));
+
+app.MapGet(
+    "api/weather/cached",
+    (LazyCacheExamples lce, double lat, double lon) => lce.GetCached(lat, lon));
 
 app.MapGet(
     "api/hashids/encode",
