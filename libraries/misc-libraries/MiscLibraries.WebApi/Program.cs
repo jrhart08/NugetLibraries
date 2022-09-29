@@ -8,11 +8,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 builder.Services.AddTransient<FlurlExamples>(provider =>
 {
-    var config = provider.GetService<IConfiguration>();
+    var config = provider.GetService<IConfiguration>()!;
+    var httpClientFactory = provider.GetService<IHttpClientFactory>()!;
 
-    return new(config["OpenWeatherApiKey"]);
+    return new(config["OpenWeatherApiKey"]!, httpClientFactory);
 });
 
 var app = builder.Build();
