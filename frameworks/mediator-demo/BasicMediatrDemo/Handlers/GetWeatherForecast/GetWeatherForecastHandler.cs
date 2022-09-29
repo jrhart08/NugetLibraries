@@ -1,27 +1,7 @@
 ﻿using MediatR;
 
-namespace BasicMediatrDemo.Handlers;
+namespace BasicMediatrDemo.Handlers.GetWeatherForecast;
 
-public class WeatherForecast
-{
-    public DateOnly Date { get; set; }
-
-    public int TemperatureC { get; set; }
-
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-    public string? Summary { get; set; }
-}
-
-public class GetWeatherForecastRequest : IRequest<GetWeatherForecastResponse>
-{
-    public int Days { get; set; }
-}
-
-public class GetWeatherForecastResponse
-{
-    public List<WeatherForecast> Forecasts { get; set; }
-}
 
 public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastRequest, GetWeatherForecastResponse>
 {
@@ -35,7 +15,7 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
         await Task.Delay(100);
         
         var forecasts = Enumerable.Range(1, request.Days)
-            .Select(index => new WeatherForecast
+            .Select(index => new GetWeatherForecastResponse.WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),

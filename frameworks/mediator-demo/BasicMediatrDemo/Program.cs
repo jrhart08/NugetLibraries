@@ -1,6 +1,4 @@
-using CommonDependencies;
 using MediatR;
-using MediatrDemo.WeatherDomain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
-builder.Services.AddTransient<ITwilioWrapper, UnimplementedTwilioWrapper>();
-builder.Services.AddTransient<MyDbContext>();
 
-builder.Services.AddMediatR(
-    typeof(DomainRef) // , ...otherAssemblies
-);
+// add mediatr handlers in this assembly
+builder.Services.AddMediatR(typeof(Program));
 
 var app = builder.Build();
 

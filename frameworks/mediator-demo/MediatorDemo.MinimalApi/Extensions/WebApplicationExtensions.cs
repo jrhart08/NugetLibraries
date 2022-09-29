@@ -1,6 +1,16 @@
-﻿namespace MediatorDemo.MinimalApi.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
-public class WebApplicationExtensions
+namespace MediatorDemo.MinimalApi.Extensions;
+
+public static class WebApplicationExtensions
 {
-    
+    public static RouteHandlerBuilder MediateGet<TRequest>(this WebApplication app, string route)
+    {
+        return app.MapGet(route, async (IMediator mediator, [FromQuery] TRequest request) =>
+        {
+            return await mediator.Send(request);
+        });
+    }
 }

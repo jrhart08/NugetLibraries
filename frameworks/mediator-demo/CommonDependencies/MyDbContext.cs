@@ -24,6 +24,6 @@ public class SupportedArea
 
 public class MyDbContext
 {
-    public IQueryable<Subscriber> Subscribers { get; set; }
-    public IQueryable<SupportedArea> SupportedAreas { get; set; }
+    public IQueryable<Subscriber> Subscribers { get; set; } = Array.Empty<Subscriber>().AsQueryable();
+    public IQueryable<SupportedArea> SupportedAreas { get; set; } = Array.Empty<SupportedArea>().AsQueryable();
 }

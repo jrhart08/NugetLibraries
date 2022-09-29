@@ -1,24 +1,24 @@
 using CommonDependencies;
+using MediatorDemo.MinimalApi.Extensions;
 using MediatR;
 using MediatrDemo.WeatherDomain;
+using MediatrDemo.WeatherDomain.Features.GetWeatherForecast;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<ITwilioWrapper, UnimplementedTwilioWrapper>();
 builder.Services.AddTransient<MyDbContext>();
-
-builder.Services.AddMediatR(
-    typeof(DomainRef) // , ...otherAssemblies
-);
+builder.Services.AddMediatR(typeof(DomainRef));
 
 var app = builder.Build();
+
+app.MediateGet<GetWeatherForecastResponse>("api/weather");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,9 +28,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();
