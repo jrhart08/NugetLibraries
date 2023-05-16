@@ -14,7 +14,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<ITwilioWrapper, UnimplementedTwilioWrapper>();
 builder.Services.AddTransient<MyDbContext>();
-builder.Services.AddMediatR(typeof(DomainRef));
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssemblyContaining<DomainRef>();
+});
 
 var app = builder.Build();
 
